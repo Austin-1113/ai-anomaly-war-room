@@ -1,6 +1,7 @@
 import { STAGE_IDS } from './state'
 
 export type RenderFn = (root: HTMLElement) => void
+export const COMMUNITY_ROUTE_ID = 'community'
 
 const routes = new Map<string, RenderFn>()
 
@@ -13,13 +14,19 @@ export function currentStageId(): string {
   return (STAGE_IDS as readonly string[]).includes(hash) ? hash : STAGE_IDS[0]
 }
 
+export function currentRouteId(): string {
+  const hash = location.hash.replace(/^#\/?/, '')
+  if (hash === COMMUNITY_ROUTE_ID || (STAGE_IDS as readonly string[]).includes(hash)) return hash
+  return STAGE_IDS[0]
+}
+
 export function navigate(stageId: string): void {
   location.hash = `#/${stageId}`
 }
 
 export function startRouter(root: HTMLElement, onChange?: (id: string) => void): void {
   const renderCurrent = () => {
-    const id = currentStageId()
+    const id = currentRouteId()
     const render = routes.get(id)
     root.innerHTML = ''
     if (render) {

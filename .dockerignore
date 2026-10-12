@@ -3,7 +3,6 @@
 node_modules
 dist
 dist-offline
-docs
 hardware
 *.log
 .DS_Store

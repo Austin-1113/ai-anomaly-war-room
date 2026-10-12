@@ -161,6 +161,40 @@ body {
 
 .whatif input[type='range'] { width: 100%; margin: 0.6rem 0; }
 
+.community-page { border-top: 3px solid var(--accent); padding-top: 0.9rem; }
+.community-page h1 { font-size: 1.4rem; margin-bottom: 0.3rem; }
+.community-stats {
+  color: var(--muted);
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 0.7rem 0.8rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+.community-controls { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-bottom: 1rem; }
+.community-filter { color: var(--muted); font-size: 0.85rem; }
+.community-filter select, .community-filter input {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--muted);
+  border-radius: var(--radius);
+  padding: 0.35rem 0.5rem;
+  font: inherit;
+}
+.community-filter input { min-width: 200px; }
+.community-results { display: grid; gap: 0.8rem; }
+.community-card {
+  background: var(--panel);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--accent);
+  padding: 0.9rem 1rem;
+}
+.community-card h2 { font-size: 1rem; margin-bottom: 0.4rem; }
+.community-card h3 { color: var(--muted); font-size: 0.85rem; margin: 0.8rem 0 0.25rem; }
+.community-meta { color: var(--accent); font-size: 0.8rem; }
+.community-section-content { white-space: pre-line; line-height: 1.55; font-size: 0.9rem; }
+.community-empty { color: var(--muted); background: var(--panel); border-radius: var(--radius); padding: 1rem; }
+
 #statusbar {
   padding: 0.4rem 1rem;
   background: var(--panel);
@@ -177,4 +211,6 @@ body {
   #scenario-select { flex: 1; max-width: none; min-width: 0; }
   .stage h1 { font-size: 1.15rem; }
   .rule-table { min-width: 420px; }
+  .community-filter { width: 100%; }
+  .community-filter select, .community-filter input { width: 100%; }
 }

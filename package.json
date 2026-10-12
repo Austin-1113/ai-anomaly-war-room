@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "validate:community": "node scripts/validate-community-content.mjs",
+    "build": "npm run validate:community && tsc --noEmit && vite build",
     "preview": "vite preview",
     "build:offline": "cross-env OFFLINE=1 vite build --outDir dist-offline"
   },

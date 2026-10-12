@@ -29,6 +29,19 @@ docker compose down
 
 Docker 版本使用與 `npm run build` 相同的 production 產物；展示日仍可使用 `npm run build:offline` 產出的 `dist-offline/index.html` 作為斷網備援。
 
+## QA 與使用說明頁
+
+導覽列的「QA 與說明」頁（`#/community`）會在建置時讀取 `docs/community/` 的 Markdown，提供 QA 案例、操作說明與常見問題的篩選與搜尋。這個機制適合讓多人分別新增可審查的靜態內容，不會在執行期間開放寫入或變更核心功能。
+
+投稿格式與限制請見 [docs/community/CONTRIBUTING.md](docs/community/CONTRIBUTING.md)。每次投稿前需執行：
+
+```bash
+npm run validate:community
+npm run build
+```
+
+社群投稿的初始狀態為「待審核」；正式測試計畫與結果仍由維護者在 `docs/test-plan.md`、`docs/test-results.md` 中管理。
+
 ## 四個頁面
 
 | # | 頁面 | 主功能 |

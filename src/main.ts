@@ -1,17 +1,19 @@
 import './styles/main.css'
 import { SCENARIO_META, STAGE_IDS, currentScenarioId, resetState, setScenario } from './app/state'
 import { SCENARIO_OPTIONS } from './data/scenarios'
-import { register, startRouter, navigate, currentStageId } from './app/router'
+import { COMMUNITY_ROUTE_ID, register, startRouter, navigate, currentStageId } from './app/router'
 import { play, stop, isPlaying } from './app/replay-controller'
 import { renderBaseline } from './pages/baseline'
 import { renderSensing } from './pages/sensing'
 import { renderDiagnosis } from './pages/diagnosis'
 import { renderDecision } from './pages/decision'
+import { renderCommunity } from './pages/community'
 
 register('baseline', renderBaseline)
 register('sensing', renderSensing)
 register('diagnosis', renderDiagnosis)
 register('decision', renderDecision)
+register(COMMUNITY_ROUTE_ID, renderCommunity)
 
 const app = document.getElementById('app')!
 const nav = document.getElementById('nav')!
@@ -31,10 +33,13 @@ const NAV_LABELS: Record<string, string> = {
   sensing: '2 異常事件',
   diagnosis: '3 AI 診斷',
   decision: '4 根因閉環',
+  community: 'QA 與說明',
 }
 
+const NAV_IDS = [...STAGE_IDS, COMMUNITY_ROUTE_ID]
+
 function renderNav(activeId: string): void {
-  nav.innerHTML = STAGE_IDS.map(
+  nav.innerHTML = NAV_IDS.map(
     (id) =>
       `<button type="button" class="nav-btn${id === activeId ? ' active' : ''}" data-stage="${id}">${NAV_LABELS[id]}</button>`,
   ).join('')
@@ -45,6 +50,9 @@ function renderNav(activeId: string): void {
       navigate(btn.dataset.stage!)
     }),
   )
+  const isCommunityPage = activeId === COMMUNITY_ROUTE_ID
+  scenarioSelect.closest('label')!.hidden = isCommunityPage
+  document.getElementById('replay-controls')!.hidden = isCommunityPage
 }
 
 function updatePlayButton(): void {
