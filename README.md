@@ -13,6 +13,22 @@ npm run build          # 正式建置(GitHub Pages 用)
 npm run build:offline  # 單檔 dist-offline/index.html,可離線雙擊開啟(展示日用)
 ```
 
+## Docker 啟動
+
+需先安裝 Docker Desktop。下列指令會在容器內完成建置，並以 Nginx 提供正式靜態網站：
+
+```bash
+docker compose up --build
+```
+
+開啟 [http://localhost:8080](http://localhost:8080)。停止服務請按 `Ctrl+C`；若要同時移除容器，執行：
+
+```bash
+docker compose down
+```
+
+Docker 版本使用與 `npm run build` 相同的 production 產物；展示日仍可使用 `npm run build:offline` 產出的 `dist-offline/index.html` 作為斷網備援。
+
 ## 四個頁面
 
 | # | 頁面 | 主功能 |
